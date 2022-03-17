@@ -1,4 +1,4 @@
-package com.example.retrofitforecaster
+package com.example.livedata
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

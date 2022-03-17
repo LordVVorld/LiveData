@@ -1,5 +1,4 @@
-package com.example.retrofitforecaster
-
+package com.example.livedata
 
 object Common {
     private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"

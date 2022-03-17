@@ -1,4 +1,4 @@
-package com.example.retrofitforecaster
+package com.example.livedata
 
 import retrofit2.Call
 import retrofit2.http.*

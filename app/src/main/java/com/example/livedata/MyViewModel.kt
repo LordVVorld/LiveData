@@ -1,4 +1,4 @@
-package com.example.retrofitforecaster
+package com.example.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 class MyViewModel : ViewModel() {
     private val weatherData: MutableLiveData<List<ListItem>> by lazy {
@@ -20,10 +19,7 @@ class MyViewModel : ViewModel() {
     }
 
     private fun loadWeatherData() {
-        val mService = Common.retrofitService
-        Timber.plant(Timber.DebugTree())
-        Timber.d("Привет")
-        mService.getWeatherList().enqueue(object : Callback<DataWeather> {
+        Common.retrofitService.getWeatherList().enqueue(object : Callback<DataWeather> {
             override fun onResponse(call: Call<DataWeather>, response: Response<DataWeather>) {
                 val dataWeather = response.body() as DataWeather
                 weatherData.value = dataWeather.list

@@ -1,5 +1,4 @@
-package com.example.retrofitforecaster
-
+package com.example.livedata
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,24 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
 class MainActivity : AppCompatActivity() {
-    lateinit var mService: RetrofitServices
-    private val adapter = Adapter()
+    private val mainAdapter = Adapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recyclerView: RecyclerView = findViewById(R.id.rView)
 
         val model: MyViewModel by viewModels()
         model.getWeatherData().observe(this) { weatherData ->
-            adapter.submitList(weatherData)
+            mainAdapter.submitList(weatherData)
         }
 
-        mService = Common.retrofitService
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        findViewById<RecyclerView?>(R.id.rView).apply {
+            layoutManager = LinearLayoutManager(this.context)
+            adapter = mainAdapter
+        }
     }
 
 
